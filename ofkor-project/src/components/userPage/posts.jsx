@@ -15,22 +15,41 @@ function Info() {
     }, []);
 
     async function ShowComments(i){
+        let o=[...userPosts]
+        // o[i].comments=[];
+        if( !o[i].comments || o[i].comments.length < 1){
         let strComments = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${userPosts[i].id}`);
         let arrComments = await strComments.json();
-        setComments(arrComments);
+        o[i].comments = arrComments;
         }
-    function markUnmark(){
-        console.log("ssdsd");
+        else{
+            o[i].comments=[];
+        }
+        console.log(o);
+        setUserPosts(o);
+        }
+
+    function markUnmark(i){
+        console.log(userPosts[i].marked);
+        let o = [...userPosts]
+        if(o[i].marked){
+            o[i].marked = false
+        }
+        else{
+            o[i].marked = true
+        }
+        setUserPosts(o);
     }
 
     
     return (<div>
         <h2>My Posts</h2>
-        {userPosts.map((post,i) =><div key={i}>
+        {userPosts.map((post,i) =><div key={i} style={post.marked?{background:"yellow"}:null}>
             <p>{post.title}</p>
-            <button onClick={markUnmark}>mark</button>
-            <button onClick={()=>ShowComments(i)}>comments</button></div> )}
-            {comments.length>0?comments.map((comment,i) =><p key={i}><b>{comment.name}</b><br/>{comment.body}</p>):null}
+            <button onClick={()=>markUnmark(i)}>mark</button>
+            <button onClick={()=>ShowComments(i)}>comments</button>
+            { post.comments ? post.comments.map((comment,i) =><p key={i}><b>{comment.name}</b><br/>{comment.body}</p>):null}
+</div> )}
     </div>)
        
 }
