@@ -9,7 +9,10 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
- 
+    
+    window.history.pushState(null, null, "/")
+    window.onclick = window.history.go(1)
+
     useEffect(() => {
         localStorage.clear()
     },[])
