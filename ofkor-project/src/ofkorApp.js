@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import { UserProvider } from './userContexts/userContext';
 import UserPage from './components/userPage';
-import { UserAlbumProvider } from './userContexts/userAlbumContext';
+import Posts from './components/userPage/posts';
+import Todos from './components/userPage/todos';
+import Albums from './components/userPage/album';
+import Error from './components/error';
 
 function App() {
     return (
@@ -11,15 +14,16 @@ function App() {
         <BrowserRouter>
 
             <UserProvider>
-                <UserAlbumProvider>
                     <Routes>
 
                         <Route path="/" element={<Login />} />
                         <Route path="/UserPage" element={<UserPage />} >
-                            {/* <Route path="/Albums" element={<Albums />} /> */}
+                            <Route path=":Albums" element={<Albums />} ></Route>
+                            <Route path=":todos" element={<Todos />} />
+                            <Route path=":posts" element={<Posts />} />
                         </Route>
+                        <Route path="*" element={<Error />} />
                     </Routes>
-                </UserAlbumProvider>
             </UserProvider>
         </BrowserRouter>)
 }
