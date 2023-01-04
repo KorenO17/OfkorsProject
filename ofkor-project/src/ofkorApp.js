@@ -7,6 +7,7 @@ import Posts from './components/userPage/posts';
 import Todos from './components/userPage/todos';
 import Albums from './components/userPage/album';
 import Error from './components/error';
+import Info from './components/userPage/info';
 
 function App() {
     return (
@@ -17,9 +18,10 @@ function App() {
                     <Routes>
 
                         <Route path="/" element={<Login />} />
-                        <Route path="/UserPage" element={<UserPage />} >
+                        <Route path="/UserPage" element={<UserPage />}>
                             <Route path="Albums" element={<Albums />} ></Route>
                             <Route path="todos" element={<Todos />} />
+                            <Route path="info" element={<Info />} />
                             <Route path="posts" element={<Posts />} />
                         </Route>
                         <Route path="*" element={<Error />} />
