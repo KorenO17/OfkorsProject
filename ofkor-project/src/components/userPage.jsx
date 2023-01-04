@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, useNavigate , Outlet } from 'react-router-dom';
 import { useUser } from '../userContexts/userContext';
 
 function UserPage() {
@@ -20,8 +20,9 @@ function UserPage() {
             <li> <Link to="/UserPage/posts">My Posts</Link></li>
             <li> <Link to="/UserPage/todos">My Todos</Link></li>
         </ul>
+            <Outlet/>
         <Link to="/" onClick={() => localStorage.clear()}>Log Out</Link>
-        <Outlet />
+    
     </div>)
 }
 

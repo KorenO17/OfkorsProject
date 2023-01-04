@@ -18,9 +18,9 @@ function App() {
 
                         <Route path="/" element={<Login />} />
                         <Route path="/UserPage" element={<UserPage />} >
-                            <Route path=":Albums" element={<Albums />} ></Route>
-                            <Route path=":todos" element={<Todos />} />
-                            <Route path=":posts" element={<Posts />} />
+                            <Route path="Albums" element={<Albums />} ></Route>
+                            <Route path="todos" element={<Todos />} />
+                            <Route path="posts" element={<Posts />} />
                         </Route>
                         <Route path="*" element={<Error />} />
                     </Routes>
