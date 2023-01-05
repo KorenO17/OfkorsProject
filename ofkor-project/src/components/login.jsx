@@ -11,7 +11,7 @@ function Login() {
 
     
     window.history.pushState(null, null, "/")
-    window.onclick = window.history.go(1)
+    window.onpopstate = window.history.go(1)
 
     useEffect(() => {
         localStorage.clear()

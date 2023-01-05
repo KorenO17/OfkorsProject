@@ -6,7 +6,11 @@ import UserPage from './components/userPage';
 import Posts from './components/userPage/posts';
 import Todos from './components/userPage/todos';
 import Albums from './components/userPage/album';
+import Photos from './components/userPage/photos/photos';
 import Error from './components/error';
+import './ofkorApp.css';
+
+
 
 function App() {
     return (
@@ -18,7 +22,9 @@ function App() {
 
                         <Route path="/" element={<Login />} />
                         <Route path="/UserPage" element={<UserPage />} >
-                            <Route path="Albums" element={<Albums />} ></Route>
+                            <Route path="Albums" element={<Albums />} />
+                            <Route path="Albums/:id" element={<Photos />} />
+                            
                             <Route path="todos" element={<Todos />} />
                             <Route path="posts" element={<Posts />} />
                         </Route>

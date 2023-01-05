@@ -9,18 +9,19 @@ function UserPage() {
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("user")))
         if (JSON.parse(localStorage.getItem("user")) == undefined) {
-            navigate("/dsaaaaaaaaaaaaaaaaaaaaaaaa")
+            navigate("/Error")
         }
     }, [])
 
     return (<div>
         <h1>Welcome Back {user.username}!</h1>
         <ul>
-            <li> <Link to="/UserPage/albums">My Albums</Link></li>
+            <li> <Link to="/UserPage/Albums">My Albums</Link></li>
             <li> <Link to="/UserPage/posts">My Posts</Link></li>
             <li> <Link to="/UserPage/todos">My Todos</Link></li>
         </ul>
             <Outlet/>
+            <br/>
         <Link to="/" onClick={() => localStorage.clear()}>Log Out</Link>
     
     </div>)
