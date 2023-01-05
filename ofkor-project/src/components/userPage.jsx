@@ -19,7 +19,7 @@ function UserPage() {
         <img src='https://seeklogo.com/images/M/monkey-logo-F30F974B08-seeklogo.com.png' alt=""/> 
         </div>  
         <div id='title'>
-        <h1 >Welcome Back {user.username}!</h1>
+        <h1 >Ofkorinho's</h1>
         </div>
         </header>
         <nav>
@@ -29,6 +29,7 @@ function UserPage() {
             <div><Link to="/UserPage/info">My Info</Link></div>
             <div id='logOut'><Link to="/" onClick={() => localStorage.clear()}>Log Out</Link></div>
         </nav>
+        <h2 id='hi'>Hi {user.username}!</h2>
             <Outlet/>
     
     </div>)

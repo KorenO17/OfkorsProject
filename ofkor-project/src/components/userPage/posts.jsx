@@ -58,10 +58,11 @@ function Info() {
     
     return (<div className="currentContent">
         <h2>My Posts</h2>
-        {userPosts.map((post, i) => <div key={i} style={post.marked ? { background: "yellow" } : null}>
-            <p>{post.title}</p>
+        {userPosts.map((post, i) => <div className="post" key={i} style={post.marked ? { background: 'rgb(137, 190, 233)' } : null}>
+            <h4>{post.title}</h4>
+            <div className="postButtons">
             <button onClick={() => markUnmark(i)}>mark</button>
-            <button onClick={() => ShowComments(i)}>comments</button>
+            <button onClick={() => ShowComments(i)}>comments</button></div>
             {post.comments ? post.comments.map((comment, i) => <p key={i}><b>{comment.name}</b><br />{comment.body}</p>) : null}
         </div>)}
     </div>)

@@ -39,8 +39,8 @@ function Albums() {
 
     return (
         <div className="currentContent">
-            <h1>My Albums</h1>
-            {
+            <h2>My Albums</h2>
+            <div id="Albums">{
                 userAlbums.map((album, i) =>
                 <div className="album"> <Link to={`/UserPage/Albums/${i}`}
                         onClick={() => {
@@ -51,7 +51,7 @@ function Albums() {
                         key={album.id}>
                         {album.title}
                     </Link></div>)
-            }
+            }</div>
         </div>
     )
 }
