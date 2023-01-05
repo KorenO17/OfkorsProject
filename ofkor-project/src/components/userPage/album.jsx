@@ -3,30 +3,55 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../userContexts/userContext";
 
 
-function Albums(){
-    let { setUser,user, userAlbums, setUserAlbums, setUserAlbum } = useUser();
+function Albums() {
+    let { user, userAlbums, setUserAlbums, setUserAlbum } = useUser();
+    async function takeAlbums() {
+        if (user && !JSON.parse(localStorage.getItem("userAlbums"))) {
+            let strAlbums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`);
 
-    // let [bool, setBool] = useState(false)
-
-    useEffect(()=>{
-        async function takeAlbums() {
-             setUser(JSON.parse(localStorage.getItem("user")))   
-            
-          if (user)  {let strAlbums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`);
-          console.log(user);
             let arrAlbums = await strAlbums.json();
-            await arrAlbums.sort((a, b) =>{
+            await arrAlbums.sort((a, b) => {
                 return a.title.localeCompare(b.title)
-                  })
-            setUserAlbums(arrAlbums);}
+            })
+            setUserAlbums(arrAlbums);
+            localStorage.setItem("userAlbums", JSON.stringify(arrAlbums));
+            console.log("ENTERANCE FETCH")
         }
-            takeAlbums(userAlbums);
-    },[])
+        else if(!JSON.parse(localStorage.getItem("userAlbums"))){
+            let strAlbums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${JSON.parse(localStorage.getItem("user")).id}`);
+
+            let arrAlbums = await strAlbums.json();
+            await arrAlbums.sort((a, b) => {
+                return a.title.localeCompare(b.title)
+            })
+            setUserAlbums(arrAlbums);
+            localStorage.setItem("userAlbums", JSON.stringify(arrAlbums));
+            console.log("REFRESH FETCH");
+        }
+        else{
+            setUserAlbums(JSON.parse(localStorage.getItem("userAlbums")));
+            console.log("NO FETCH");
+        }
+    }
+    useEffect(() => {
+        takeAlbums();
+    }, [])
 
     return (
         <>
-        <h1>My Albums</h1>
-        {userAlbums.map((album,i)=><Link to={`/UserPage/Albums/${i}`} onClick={()=>setUserAlbum(album)} className="link" key={album.id}>{album.title}</Link>)}
+            <h1>My Albums</h1>
+            {
+                userAlbums.map((album, i) =>
+                    <Link to={`/UserPage/Albums/${i}`}
+                        onClick={() => {
+                            setUserAlbum(album)
+                            localStorage.setItem("userAlbum", JSON.stringify(album))
+                        }}
+                        className="link"
+                        key={album.id}>
+                        {album.title}
+                    </Link>)
+            }
         </>
     )
 }
