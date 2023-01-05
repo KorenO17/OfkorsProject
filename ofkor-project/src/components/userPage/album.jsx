@@ -24,10 +24,10 @@ function Albums(){
     },[])
 
     return (
-        <>
+        <div className="currentContent">
         <h1>My Albums</h1>
-        {userAlbums.map((album,i)=><Link to={`/UserPage/Albums/${i}`} onClick={()=>setUserAlbum(album)} className="link" key={album.id}>{album.title}</Link>)}
-        </>
+        {userAlbums.map((album,i)=><div className="album"><Link to={`/UserPage/Albums/${i}`} onClick={()=>setUserAlbum(album)} className="link" key={album.id}>{album.title}</Link></div>)}
+        </div>
     )
 }
 

@@ -15,17 +15,21 @@ function UserPage() {
 
     return (<div>
         <header id="webHeader">
-        <img src='https://w7.pngwing.com/pngs/826/876/png-transparent-chimpanzee-logo-monkey-ape-monkey-face-animals-head-thumbnail.png' alt=""/>    
+        <div id='logo'>
+        <img src='https://seeklogo.com/images/M/monkey-logo-F30F974B08-seeklogo.com.png' alt=""/> 
+        </div>  
+        <div id='title'>
         <h1 >Welcome Back {user.username}!</h1>
+        </div>
         </header>
-        <ul>
-            <li><Link to="/UserPage/Albums">My Albums</Link></li>
-            <li><Link to="/UserPage/posts">My Posts</Link></li>
-            <li><Link to="/UserPage/todos">My Todos</Link></li>
-            <li><Link to="/UserPage/info">My Info</Link></li>
-        </ul>
+        <nav>
+            <div><Link to="/UserPage/Albums">My Albums</Link></div>
+            <div><Link to="/UserPage/posts">My Posts</Link></div>
+            <div><Link to="/UserPage/todos">My Todos</Link></div>
+            <div><Link to="/UserPage/info">My Info</Link></div>
+            <div id='logOut'><Link to="/" onClick={() => localStorage.clear()}>Log Out</Link></div>
+        </nav>
             <Outlet/>
-        <Link to="/" onClick={() => localStorage.clear()}>Log Out</Link>
     
     </div>)
 }

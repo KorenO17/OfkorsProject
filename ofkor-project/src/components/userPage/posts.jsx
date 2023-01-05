@@ -42,7 +42,7 @@ function Info() {
     }
 
     
-    return (<div>
+    return (<div className="currentContent">
         <h2>My Posts</h2>
         {userPosts.map((post,i) =><div key={i} style={post.marked?{background:"yellow"}:null}>
             <p>{post.title}</p>

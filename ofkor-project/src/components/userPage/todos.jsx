@@ -65,7 +65,7 @@ function Todos() {
     }
 
     return (
-        <div>
+        <div className="currentContent">
             <h3>Todos</h3>
             <ol>
                 <select id="sorting" value={sorting} onChange={(e)=>{changeSort(e.target.value)}}>

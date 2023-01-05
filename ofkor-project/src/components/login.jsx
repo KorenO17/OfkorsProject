@@ -9,20 +9,20 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    
+
     window.history.pushState(null, null, "/")
     window.onpopstate = window.history.go(1)
 
     useEffect(() => {
         localStorage.clear()
-    },[])
+    }, [])
 
-    async function handleSubmit (e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         let bool = false
-        let strUser= await fetch(`https://jsonplaceholder.typicode.com/users?username=${username}`)
+        let strUser = await fetch(`https://jsonplaceholder.typicode.com/users?username=${username}`)
         let theUser = await strUser.json()
-        if(theUser[0].address.zipcode==password){
+        if (theUser[0].address.zipcode == password) {
             bool = true
             localStorage.setItem('user', JSON.stringify(theUser[0]))
         }
@@ -42,15 +42,23 @@ function Login() {
 
     return (
         <div>
-            <h1>Login</h1>
+            <header id="webHeader">
+                <div id='logo'>
+                    <img src='https://seeklogo.com/images/M/monkey-logo-F30F974B08-seeklogo.com.png' alt="" />
+                </div>
+                <div id='title'>
+                    <h1 >Ofkorinho's</h1>
+                </div>
+            </header>
             <form onSubmit={(e) => handleSubmit(e)}>
+                <h3 id='login'>Login</h3>
                 <label >Enter Username</label>
-                <input value={username} onChange={(e) => nameChange(e)} name='username' />
+                <input className='logInput' value={username} onChange={(e) => nameChange(e)} name='username' />
                 <br />
                 <label >Enter Password</label>
-                <input value={password} type='password' onChange={(e) => passChange(e)} name='password' />
+                <input className='logInput' value={password} type='password' onChange={(e) => passChange(e)} name='password' />
                 <br />
-                <button type='submit'>Login</button>
+                <button id='logButton' type='submit'>Login</button>
             </form>
         </div>
     )

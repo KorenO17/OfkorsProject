@@ -1,7 +1,149 @@
-.link{
-    margin-right: 1%;
-    margin-bottom: 11%;
+@import url('https://fonts.cdnfonts.com/css/my-childish-font');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'arial';
+   
 }
-header img{
-    background: none;
+a:link,a:visited{
+    color: black;
+    text-decoration-line: none;
+}
+a:hover{
+ -webkit-text-stroke: 7px solid red;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-image: url("https://cdn.vectorstock.com/i/1000x1000/47/13/nice-background-vector-16234713.webp");
+}
+nav div>a:link,
+nav div>a:visited{
+    /* background-color: yellow; */
+    color: white;
+    text-decoration-line: none;
+    position: absolute;
+    bottom: 5%;
+}
+nav #logOut{
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    bottom: 0;
+    border-bottom: none;
+}
+nav div{
+    height: 5%;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid wheat;
+}
+header{
+    background-image:linear-gradient(20deg, rgb(88, 88, 212), red);
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    height: 20vh;
+    z-index: 2;  
+}
+#logo{
+    height: 100%;
+    width:20%;
+    position: relative;
+}
+#logo img{
+    position: absolute;
+    height: 80%;
+    width: 60%;
+    top: calc(50% - 40%);
+    right: calc(50% - 30%);
+}
+
+#title{
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 80%;
+}
+#title h1{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+  
+}
+nav{
+    background-image:linear-gradient(20deg,red, rgb(88, 88, 212));
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 20vh;
+    left: 0;
+    width: 10vw;
+    height: 80vh;
+}
+.album{
+    width: 20%;
+    height: 20%;
+    background-color: black;
+}
+.currentContent{
+    color: none;
+    position: absolute;
+    z-index: 0;
+    top: 20vh;
+    left: 12vw;
+    width: 80vw;
+    height: 80vh;
+}
+
+
+
+
+
+form > h3{
+  
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+form{
+    
+    color: rgba(255, 255,255 , 0.7);
+    -webkit-text-stroke: 0.2px black;
+    font-weight: bold;
+    background-color: rgba(179, 83, 155,0.5);
+    width: 25%;
+    height: 30%;
+    position: absolute;
+    top:40%;
+    right:calc(50% - 12.5%);
+    border: 1px solid black;
+   
+}
+label{
+    display: block;
+    margin-left: 29%;
+}
+.logInput{
+    margin-left: 25%;
+    width: 50%;
+    height: 30px;
+}
+
+#logButton{
+    background-color: rgba(207, 49, 202, 0.7);
+    border:3px ridge rgba(185, 107, 202, 0.6);
+    width: 30%;
+    height: 19%;
+    margin-left: calc(50% - 15%);
+    margin-top: 2%;
+    font-size: 1rem;
+}
+/* .blue:focus{
+    background-color: rgb(126, 166, 212);
+} */
+input:hover{
+    background-color:  rgba(122, 122, 230,0.6);
 }

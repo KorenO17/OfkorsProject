@@ -39,13 +39,14 @@ function Photos() {
         }
     }
 
-    return(userPhotos.length>0?<>
+    return(userPhotos.length>0? <div className="currentContent">
         <h1>Photos Gallery - {userAlbum.title}</h1>
         <h2>{userPhotos[photo].title}</h2>
+        <button onClick={() => prevPhoto()}>Previous</button>
         <img src={userPhotos[photo].url} style={{height: 'auto',width:'30%'}}></img>
         <button onClick={() => nextPhoto()}>Next</button>
-        <button onClick={() => prevPhoto()}>Previous</button>
-    </>:"")
+       
+    </div>:"")
 }
 
 export default Photos;

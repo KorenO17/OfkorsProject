@@ -25,7 +25,7 @@ function App() {
                         <Route path="/UserPage" element={<UserPage />} >
                             <Route path="Albums" element={<Albums />} />
                             <Route path="Albums/:id" element={<Photos />} />
-                            <Route path="info" element={<Info />} />
+                            <Route path="info" index element={<Info />} />
                             <Route path="todos" element={<Todos />} />
                             <Route path="posts" element={<Posts />} />
                         </Route>
