@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/login';
 import { UserProvider } from './userContexts/userContext';
 import UserPage from './components/userPage';
@@ -19,18 +19,18 @@ function App() {
         <BrowserRouter>
 
             <UserProvider>
-                    <Routes>
-
-                        <Route path="/" element={<Login />} />
-                        <Route path="/UserPage" element={<UserPage />} >
-                            <Route path="Albums" element={<Albums />} />
-                            <Route path="Albums/:id" element={<Photos />} />
-                            <Route path="info" index element={<Info />} />
-                            <Route path="todos" element={<Todos />} />
-                            <Route path="posts" element={<Posts />} />
-                        </Route>
-                        <Route path="*" element={<Error />} />
-                    </Routes>
+                <Routes >
+                    <Route index element={<Navigate replace to={'/Login'}/>}/>
+                    <Route path='/Login' element={<Login />} />
+                    <Route path="/UserPage" element={<UserPage />} >
+                        <Route path="Albums" element={<Albums />} />
+                        <Route path="Albums/:id" element={<Photos />} />
+                        <Route path="info" index element={<Info />} />
+                        <Route path="todos" element={<Todos />} />
+                        <Route path="posts" element={<Posts />} />
+                    </Route>
+                    <Route path="*" element={<Error />} />
+                </Routes>
             </UserProvider>
         </BrowserRouter>)
 }
