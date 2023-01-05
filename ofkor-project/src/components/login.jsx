@@ -22,7 +22,7 @@ function Login() {
         let bool = false
         let strUser = await fetch(`https://jsonplaceholder.typicode.com/users?username=${username}`)
         let theUser = await strUser.json()
-        if (theUser[0].address.zipcode == password) {
+        if(theUser[0].address.zipcode===password){
             bool = true
             localStorage.setItem('user', JSON.stringify(theUser[0]))
         }

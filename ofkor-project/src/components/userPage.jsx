@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { Link, useNavigate , Outlet } from 'react-router-dom';
+import { Link, useNavigate, Outlet } from 'react-router-dom';
 import { useUser } from '../userContexts/userContext';
 
 function UserPage() {
     const { user, setUser } = useUser();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("user")))
-        if (JSON.parse(localStorage.getItem("user")) == undefined) {
+        if (JSON.parse(localStorage.getItem("user")) === undefined) {
             navigate("/Error")
         }
     }, [])
