@@ -14,7 +14,10 @@ function UserPage() {
     }, [])
 
     return (<div>
-        <h1>Welcome Back {user.username}!</h1>
+        <header id="webHeader">
+        <img src='https://w7.pngwing.com/pngs/826/876/png-transparent-chimpanzee-logo-monkey-ape-monkey-face-animals-head-thumbnail.png' alt=""/>    
+        <h1 >Welcome Back {user.username}!</h1>
+        </header>
         <ul>
             <li><Link to="/UserPage/Albums">My Albums</Link></li>
             <li><Link to="/UserPage/posts">My Posts</Link></li>
