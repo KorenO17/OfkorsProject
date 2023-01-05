@@ -44,7 +44,7 @@ function Albums() {
 
     return (
         <div className="currentContent">
-            <h2>My Albums</h2>
+            <h3>My Albums</h3>
             <div id="Albums">{
                 userAlbums.map((album, i) =>
                     <div className="album"> <Link to={`/UserPage/Albums/${i}`}
