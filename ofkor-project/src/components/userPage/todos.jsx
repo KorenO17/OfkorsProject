@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { useUser } from "../../userContexts/userContext";
 
+
 function Todos() {
+   
     console.log("freere");
     let [done, setDone] = useState(false)
 
     let [sorting, setSorting] = useState("id")
     let { user, userTodos, setUserTodos } = useUser();
     useEffect(() => {
+         if (!JSON.parse(localStorage.getItem("user"))) {
+            window.history.back()
+        }
         async function takeTodos() {
             if (user) {
                 let strTodos = await fetch(`https://jsonplaceholder.typicode.com/todos?userId=${user.id}`);

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { useUser } from "../../../userContexts/userContext";
 
 
@@ -10,29 +11,33 @@ function Photos() {
     let [photo, setPhoto] = useState(0);
 
     useEffect(() => {
+        if(!JSON.parse(localStorage.getItem("userAlbum"))){
+            window.history.back()
+            console.log("hi")
+        }
         async function takePhotos() {
-           if(userAlbum.id&&!JSON.parse(localStorage.getItem("userPhotos"))) {
+           if(userAlbum.id&&!JSON.parse(localStorage.getItem(`userPhotos${JSON.parse(localStorage.getItem("userAlbum")).id}`))) {
                 let strPhotos = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${userAlbum.id}`);
                 let arrPhotos = await strPhotos.json();
                 await arrPhotos.sort((a, b) => {
                     return a.title.localeCompare(b.title)
                 })
                 setUserPhotos(arrPhotos);
-                localStorage.setItem("userPhotos", JSON.stringify(arrPhotos));
+                localStorage.setItem(`userPhotos${JSON.parse(localStorage.getItem("userAlbum")).id}`, JSON.stringify(arrPhotos));
                 console.log("ENTERANCE FETCH")
             }
-            else if(!JSON.parse(localStorage.getItem("userPhotos"))){
+            else if(!JSON.parse(localStorage.getItem(`userPhotos${JSON.parse(localStorage.getItem("userAlbum")).id}`))){
                 let strPhotos = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${JSON.parse(localStorage.getItem("userAlbum")).id}`);
                 let arrPhotos = await strPhotos.json();
                 await arrPhotos.sort((a, b) => {
                     return a.title.localeCompare(b.title)
                 })
                 setUserPhotos(arrPhotos);
-                localStorage.setItem("userPhotos", JSON.stringify(arrPhotos));
+                localStorage.setItem(`userPhotos${JSON.parse(localStorage.getItem("userAlbum")).id}`, JSON.stringify(arrPhotos));
                 console.log("ENTERANCE FETCH")
             }
             else{
-                setUserPhotos(JSON.parse(localStorage.getItem("userPhotos")));
+                setUserPhotos(JSON.parse(localStorage.getItem(`userPhotos${JSON.parse(localStorage.getItem("userAlbum")).id}`)));
                 console.log("NO FETCH");
                 
             }

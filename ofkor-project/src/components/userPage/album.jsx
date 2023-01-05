@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../userContexts/userContext";
 
-
 function Albums() {
     let { user, userAlbums, setUserAlbums, setUserAlbum } = useUser();
+
+
+
     async function takeAlbums() {
         if (user && !JSON.parse(localStorage.getItem("userAlbums"))) {
             let strAlbums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`);
@@ -17,7 +19,7 @@ function Albums() {
             localStorage.setItem("userAlbums", JSON.stringify(arrAlbums));
             console.log("ENTERANCE FETCH")
         }
-        else if(!JSON.parse(localStorage.getItem("userAlbums"))){
+        else if (!JSON.parse(localStorage.getItem("userAlbums"))) {
             let strAlbums = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${JSON.parse(localStorage.getItem("user")).id}`);
 
             let arrAlbums = await strAlbums.json();
@@ -28,12 +30,15 @@ function Albums() {
             localStorage.setItem("userAlbums", JSON.stringify(arrAlbums));
             console.log("REFRESH FETCH");
         }
-        else{
+        else {
             setUserAlbums(JSON.parse(localStorage.getItem("userAlbums")));
             console.log("NO FETCH");
         }
     }
     useEffect(() => {
+        if (!JSON.parse(localStorage.getItem("user"))) {
+            window.history.back()
+        }
         takeAlbums();
     }, [])
 
@@ -42,7 +47,7 @@ function Albums() {
             <h2>My Albums</h2>
             <div id="Albums">{
                 userAlbums.map((album, i) =>
-                <div className="album"> <Link to={`/UserPage/Albums/${i}`}
+                    <div className="album"> <Link to={`/UserPage/Albums/${i}`}
                         onClick={() => {
                             setUserAlbum(album)
                             localStorage.setItem("userAlbum", JSON.stringify(album))

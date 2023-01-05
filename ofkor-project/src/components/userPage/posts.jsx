@@ -1,9 +1,12 @@
 import { useUser } from "../../userContexts/userContext";
 import { useEffect } from "react";
+
 function Info() {
     const { user, userPosts, setUserPosts } = useUser();
-
     useEffect(() => {
+        if (!JSON.parse(localStorage.getItem("user"))) {
+            window.history.back()
+        }
         async function takePosts() {
             if (user&&!JSON.parse(localStorage.getItem("userPosts"))) {
                 let strPosts = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
