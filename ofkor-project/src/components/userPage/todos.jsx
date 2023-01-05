@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useUser } from "../../userContexts/userContext";
 
 function Todos() {
-    console.log("ff");
+    console.log("freere");
+    let [done, setDone] = useState(false)
     let [bool, setBool] = useState(false)
     let [sorting, setSorting] = useState("id")
     let { user, userTodos, setUserTodos } = useUser();
@@ -12,23 +13,25 @@ function Todos() {
             let arrTodos = await strTodos.json();
             setUserTodos(arrTodos);
         }
-        if (!bool)
+        if (!bool && userTodos.length < 1) 
             takeTodos();
         if (userTodos) {
             setBool(true);
         }
 
     }, []);
-    // useEffect(()=>)
+    useEffect(()=>{console.log("df");
+    setTimeout(()=>changeSort(sorting),0)}, [done]);
+
     function checkDiff(e, i) {
         let o = [...userTodos];
-        console.log("hi", e.target.checked);
         o[i].completed = !o[i].completed
         setUserTodos(o);
+        setDone((prevDone) =>!prevDone);
     }
 
     function changeSort(val){
-        let o = userTodos;
+        let o = [...userTodos];
         
         if(val == "id"){
             o.sort((a, b) =>{
@@ -72,7 +75,7 @@ function Todos() {
                     <option value="name">Sort by Alphabet</option>
                     <option value="rand">Sort Randomaly</option>
                 </select>
-                {userTodos.map((todo, i) => (<li
+                {userTodos.length>0?(userTodos.map((todo, i) => (<li
                     key={todo.id}
                     style={userTodos[i].completed ? { background: "green" } : { background: "red" }}>
                     <input type="checkbox"
@@ -80,7 +83,7 @@ function Todos() {
                         onChange={(e) => checkDiff(e, i)} />
                         {
                         todo.title}
-                </li>))}
+                </li>))):""}
             </ol>
         </div>)
 }

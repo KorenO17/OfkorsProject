@@ -16,12 +16,12 @@ function UserPage() {
     return (<div>
         <h1>Welcome Back {user.username}!</h1>
         <ul>
-            <li> <Link to="/UserPage/Albums">My Albums</Link></li>
-            <li> <Link to="/UserPage/posts">My Posts</Link></li>
-            <li> <Link to="/UserPage/todos">My Todos</Link></li>
+            <li><Link to="/UserPage/Albums">My Albums</Link></li>
+            <li><Link to="/UserPage/posts">My Posts</Link></li>
+            <li><Link to="/UserPage/todos">My Todos</Link></li>
+            <li><Link to="/UserPage/info">My Info</Link></li>
         </ul>
             <Outlet/>
-            <br/>
         <Link to="/" onClick={() => localStorage.clear()}>Log Out</Link>
     
     </div>)
